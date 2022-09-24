@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spoopy/shared/navigation/views/navbar.dart';
+import 'package:spoopy/app_desktop.dart';
+import 'package:spoopy/app_mobile.dart';
+import 'dart:io' show Platform;
+
+import 'package:spoopy/shared/navigation/views/navbar_desktop.dart';
 
 import 'features/status/presentation/views/status_page.dart';
 
@@ -22,12 +26,7 @@ class App extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Spoopy's Management App"),
           ),
-          body: Row(
-            children: const [
-              SpoopyNavBar(),
-              Flexible(child: StatusPage()),
-            ],
-          )),
+          body: Platform.isWindows ? const DesktopApp() : const MobileApp()),
       debugShowCheckedModeBanner: false,
     );
   }
