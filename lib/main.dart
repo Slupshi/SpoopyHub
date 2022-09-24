@@ -4,10 +4,6 @@ import 'package:spoopy/app_desktop.dart';
 import 'package:spoopy/app_mobile.dart';
 import 'dart:io' show Platform;
 
-import 'package:spoopy/shared/navigation/views/navbar_desktop.dart';
-
-import 'features/status/presentation/views/status_page.dart';
-
 void main() {
   runApp(const ProviderScope(child: App()));
 }
