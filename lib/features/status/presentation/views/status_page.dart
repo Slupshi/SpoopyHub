@@ -58,54 +58,32 @@ class StatusPage extends ConsumerWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            RichText(
-                                text: TextSpan(children: [
-                              const TextSpan(
-                                  text: "Logged : ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: black)),
-                              TextSpan(
-                                  text: statusState.isLogged ? 'Yes' : 'No',
-                                  style: const TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: black)),
-                            ])),
-                            RichText(
-                                text: TextSpan(children: [
-                              const TextSpan(
-                                  text: "Log time : ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: black)),
-                              TextSpan(
-                                  text: Utilities.durationFormat(
-                                      statusState.logTime),
-                                  style: const TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: black)),
-                            ])),
-                            RichText(
-                                text: TextSpan(children: [
-                              const TextSpan(
-                                  text: "Run time : ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: black)),
-                              TextSpan(
-                                  text: Utilities.durationFormat(
-                                      statusState.runTime),
-                                  style: const TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: black)),
-                            ])),
+                            statusLabel("Logged : ",
+                                statusState.isLogged ? 'Yes' : 'No'),
+                            statusLabel("Log time : ",
+                                Utilities.durationFormat(statusState.logTime)),
+                            statusLabel("Run time : ",
+                                Utilities.durationFormat(statusState.runTime))
                           ],
                         )
                       ],
                     ),
                   ),
                   homeCard(
-                    child: const Text("toto"),
+                    child: Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ListView.separated(
+                          separatorBuilder: (context, index) => const Divider(
+                                color: black,
+                              ),
+                          itemCount: 7,
+                          itemBuilder: ((context, index) => ListTile(
+                                leading: Text(DateTime.now().toString()),
+                                title: const Text("Un jolie log"),
+                                trailing: const Text("ERROR"),
+                              ))),
+                    )),
                   ),
                 ],
               ),
@@ -138,5 +116,17 @@ class StatusPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Widget statusLabel(String label, String content) {
+    return RichText(
+        text: TextSpan(children: [
+      TextSpan(
+          text: label,
+          style: const TextStyle(fontWeight: FontWeight.bold, color: black)),
+      TextSpan(
+          text: content,
+          style: const TextStyle(fontStyle: FontStyle.italic, color: black)),
+    ]));
   }
 }
