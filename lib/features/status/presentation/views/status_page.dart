@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:intl/intl.dart';
 import 'package:spoopy/assets/colors.dart';
 import 'package:spoopy/features/status/presentation/viewmodels/status_viewmodel.dart';
 import 'package:spoopy/shared/utilities.dart';
@@ -52,6 +53,7 @@ class StatusPage extends ConsumerWidget {
                                 ref
                                     .read(statusProvider.notifier)
                                     .changeStatus(value);
+                                ref.read(statusProvider.notifier).getLogs();
                               })),
                         ),
                         const SizedBox(height: 15, width: double.infinity),
@@ -77,11 +79,32 @@ class StatusPage extends ConsumerWidget {
                           separatorBuilder: (context, index) => const Divider(
                                 color: black,
                               ),
-                          itemCount: 7,
+                          itemCount: statusState.logs.length > 7
+                              ? 7
+                              : statusState.logs.length,
                           itemBuilder: ((context, index) => ListTile(
-                                leading: Text(DateTime.now().toString()),
-                                title: const Text("Un jolie log"),
-                                trailing: const Text("ERROR"),
+                                leading: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(DateFormat.yMd()
+                                        .add_jm()
+                                        .format(statusState.logs[index].time)),
+                                    const VerticalDivider(
+                                      color: black,
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                ),
+                                title: Text(statusState.logs[index].message),
+                                trailing: Text(
+                                  statusState.logs[index].isError
+                                      ? 'ERROR'
+                                      : 'INFO',
+                                  style: TextStyle(
+                                      color: statusState.logs[index].isError
+                                          ? red
+                                          : black),
+                                ),
                               ))),
                     )),
                   ),
@@ -92,7 +115,17 @@ class StatusPage extends ConsumerWidget {
               flex: 1,
               child: Row(
                 children: [
-                  homeCard(child: const Text("toto")),
+                  homeCard(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 10),
+                    child: Column(
+                      children: [
+                        statusLabel(
+                            "API Calls : ", statusState.apiCalls.toString()),
+                      ],
+                    ),
+                  )),
                   homeCard(child: const Text("toto")),
                 ],
               ),
