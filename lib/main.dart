@@ -4,6 +4,8 @@ import 'package:spoopy/app_desktop.dart';
 import 'package:spoopy/app_mobile.dart';
 import 'dart:io' show Platform;
 
+import 'package:spoopy/assets/colors.dart';
+
 void main() {
   runApp(const ProviderScope(child: App()));
 }
@@ -16,7 +18,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Spoopy',
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: darkOrange,
       ),
       home: Scaffold(
           appBar: AppBar(

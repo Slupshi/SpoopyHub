@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoopy/assets/colors.dart';
 
 import 'package:spoopy/shared/navigation/models/nav_item.dart';
 
@@ -16,7 +17,7 @@ class SpoopyNavBarDesktop extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stateIndex = ref.watch(navBarProvider);
     return Container(
-      color: Colors.deepOrange,
+      color: darkOrange,
       width: 200,
       height: double.infinity,
       child: ListView.builder(
@@ -29,18 +30,16 @@ class SpoopyNavBarDesktop extends ConsumerWidget {
 
   Widget navBarItem(NavBarItem item, int actualIndex, WidgetRef ref) {
     return Container(
-      color: actualIndex == item.index
-          ? Colors.deepOrangeAccent
-          : Colors.transparent,
+      color: actualIndex == item.index ? darkOrangeAccent : transparent,
       child: ListTile(
         leading: Icon(
           item.icon,
-          color: Colors.white,
+          color: white,
         ),
         title: Text(
           item.text,
           style: TextStyle(
-              color: Colors.white,
+              color: white,
               fontWeight: item.index == actualIndex
                   ? FontWeight.bold
                   : FontWeight.normal),
