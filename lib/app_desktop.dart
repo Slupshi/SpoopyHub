@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spoopy/features/status/presentation/views/status_page.dart';
+import 'package:spoopy/features/status/presentation/views/desktop/status_page.dart';
 import 'package:spoopy/shared/navigation/viewmodels/nav_viewmodel.dart';
 import 'package:spoopy/shared/navigation/views/navbar_desktop.dart';
 

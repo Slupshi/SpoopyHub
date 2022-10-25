@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/features/logs/models/spoopy_logs.dart';
 
@@ -6,14 +5,14 @@ class StatusState {
   bool isLogged;
   Duration logTime;
   Duration runTime;
-  int apiCalls;
+  Map<DateTime, int> apiCalls;
   List<SpoopyLogs> logs;
 
   StatusState({
     this.isLogged = false,
     this.logTime = Duration.zero,
     this.runTime = Duration.zero,
-    this.apiCalls = 0,
+    this.apiCalls = const <DateTime, int>{},
     this.logs = const [],
   });
 
@@ -21,7 +20,7 @@ class StatusState {
     bool? isLogged,
     Duration? logTime,
     Duration? runTime,
-    int? apiCalls,
+    Map<DateTime, int>? apiCalls,
     List<SpoopyLogs>? logs,
   }) {
     return StatusState(

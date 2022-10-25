@@ -1,10 +1,12 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:intl/intl.dart';
 import 'package:spoopy/assets/colors.dart';
 import 'package:spoopy/features/status/presentation/viewmodels/status_viewmodel.dart';
+import 'package:spoopy/features/status/presentation/widgets/home_card.dart';
+import 'package:spoopy/features/status/presentation/widgets/status_label.dart';
 import 'package:spoopy/shared/utilities.dart';
 
 final statusProvider = StateNotifierProvider<StatusNotifier, StatusState>(
@@ -25,23 +27,29 @@ class StatusPage extends ConsumerWidget {
               flex: 1,
               child: Row(
                 children: [
-                  homeCard(
+                  HomeCard(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        IconButton(
-                            iconSize: 150,
-                            splashRadius: 70,
-                            onPressed: () {
-                              ref
-                                  .read(statusProvider.notifier)
-                                  .changeStatus(!statusState.isLogged);
-                            },
-                            icon: Icon(
-                              Icons.power_settings_new,
-                              color: statusState.isLogged ? darkGreen : red,
-                            )),
+                        Material(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(150)),
+                          child: IconButton(
+                              iconSize: 150,
+                              splashRadius: 83,
+                              onPressed: () {
+                                ref
+                                    .read(statusProvider.notifier)
+                                    .changeStatus(!statusState.isLogged);
+                              },
+                              icon: Icon(
+                                Icons.power_settings_new,
+                                color: statusState.isLogged ? darkGreen : red,
+                              )),
+                        ),
+                        const SizedBox(height: 10, width: double.infinity),
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: FlutterSwitch(
@@ -60,18 +68,23 @@ class StatusPage extends ConsumerWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            statusLabel("Logged : ",
-                                statusState.isLogged ? 'Yes' : 'No'),
-                            statusLabel("Log time : ",
-                                Utilities.durationFormat(statusState.logTime)),
-                            statusLabel("Run time : ",
-                                Utilities.durationFormat(statusState.runTime))
+                            StatusLabel(
+                                label: "Logged : ",
+                                content: statusState.isLogged ? 'Yes' : 'No'),
+                            StatusLabel(
+                                label: "Log time : ",
+                                content: Utilities.durationFormat(
+                                    statusState.logTime)),
+                            StatusLabel(
+                                label: "Run time : ",
+                                content: Utilities.durationFormat(
+                                    statusState.runTime))
                           ],
                         )
                       ],
                     ),
                   ),
-                  homeCard(
+                  HomeCard(
                     child: Expanded(
                         child: Padding(
                       padding: const EdgeInsets.all(10),
@@ -115,18 +128,36 @@ class StatusPage extends ConsumerWidget {
               flex: 1,
               child: Row(
                 children: [
-                  homeCard(
+                  HomeCard(
                       child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 10),
                     child: Column(
                       children: [
-                        statusLabel(
-                            "API Calls : ", statusState.apiCalls.toString()),
+                        StatusLabel(
+                            label: "API Calls : ",
+                            content: statusState
+                                .apiCalls[statusState.apiCalls.length - 1]
+                                .toString()),
+                        Expanded(
+                          child: LineChart(LineChartData(
+                            minX: 0,
+                            minY: 0,
+                            lineBarsData: [
+                              LineChartBarData(spots: const [
+                                FlSpot(1, 1),
+                                FlSpot(2, 2),
+                                FlSpot(3, 2),
+                                FlSpot(4, 5),
+                              ], color: darkOrange)
+                            ],
+                            backgroundColor: lightGrey,
+                          )),
+                        ),
                       ],
                     ),
                   )),
-                  homeCard(child: const Text("toto")),
+                  const HomeCard(child: Text("toto")),
                 ],
               ),
             )
@@ -134,32 +165,5 @@ class StatusPage extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  Widget homeCard({required Widget child}) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(5),
-        child: Card(
-          color: white,
-          elevation: 5,
-          child: SizedBox.expand(
-            child: Center(child: child),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget statusLabel(String label, String content) {
-    return RichText(
-        text: TextSpan(children: [
-      TextSpan(
-          text: label,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: black)),
-      TextSpan(
-          text: content,
-          style: const TextStyle(fontStyle: FontStyle.italic, color: black)),
-    ]));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:spoopy/features/status/presentation/views/status_page.dart';
+import 'package:spoopy/features/status/presentation/views/mobile/status_page_mobile.dart';
 import 'package:spoopy/shared/navigation/viewmodels/nav_viewmodel.dart';
 
 class MobileApp extends ConsumerWidget {
@@ -12,13 +12,13 @@ class MobileApp extends ConsumerWidget {
     return Column(
       children: [
         if (index == 0)
-          const StatusPage()
+          const StatusPageMobile()
         else if (index == 1)
           const Flexible(
             child: Text("Logs"),
           )
         else
-          const StatusPage()
+          const StatusPageMobile()
       ],
     );
   }
