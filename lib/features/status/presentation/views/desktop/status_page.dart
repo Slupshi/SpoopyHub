@@ -32,6 +32,7 @@ class StatusPage extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        const Spacer(flex: 2),
                         Material(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
@@ -49,7 +50,7 @@ class StatusPage extends ConsumerWidget {
                                 color: statusState.isLogged ? darkGreen : red,
                               )),
                         ),
-                        const SizedBox(height: 10, width: double.infinity),
+                        const Spacer(flex: 1),
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: FlutterSwitch(
@@ -64,7 +65,7 @@ class StatusPage extends ConsumerWidget {
                                 ref.read(statusProvider.notifier).getLogs();
                               })),
                         ),
-                        const SizedBox(height: 15, width: double.infinity),
+                        const Spacer(flex: 2),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -80,7 +81,8 @@ class StatusPage extends ConsumerWidget {
                                 content: Utilities.durationFormat(
                                     statusState.runTime))
                           ],
-                        )
+                        ),
+                        const Spacer(flex: 3),
                       ],
                     ),
                   ),
