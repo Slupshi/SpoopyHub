@@ -9,9 +9,6 @@ import 'package:spoopy/features/status/presentation/widgets/home_card.dart';
 import 'package:spoopy/features/status/presentation/widgets/status_label.dart';
 import 'package:spoopy/shared/utilities.dart';
 
-final statusProvider = StateNotifierProvider<StatusNotifier, StatusState>(
-    ((ref) => StatusNotifier()));
-
 class StatusPage extends ConsumerWidget {
   const StatusPage({Key? key}) : super(key: key);
 

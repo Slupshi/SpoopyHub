@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:intl/intl.dart';
 import 'package:spoopy/assets/colors.dart';
-import 'package:spoopy/features/status/presentation/views/desktop/status_page.dart';
+import 'package:spoopy/features/status/presentation/viewmodels/status_viewmodel.dart';
 import 'package:spoopy/features/status/presentation/widgets/home_card.dart';
 import 'package:spoopy/features/status/presentation/widgets/status_label.dart';
 import 'package:spoopy/shared/utilities.dart';

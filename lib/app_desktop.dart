@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoopy/features/logs/presentation/views/desktop/logs_page.dart';
 import 'package:spoopy/features/status/presentation/views/desktop/status_page.dart';
 import 'package:spoopy/shared/navigation/viewmodels/nav_viewmodel.dart';
 import 'package:spoopy/shared/navigation/views/navbar_desktop.dart';
@@ -17,7 +18,7 @@ class DesktopApp extends ConsumerWidget {
           const StatusPage()
         else if (index == 1)
           const Flexible(
-            child: Text("Logs"),
+            child: LogsPage(),
           )
         else
           const StatusPage()
