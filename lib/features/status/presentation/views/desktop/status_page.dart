@@ -15,6 +15,8 @@ class StatusPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     StatusState statusState = ref.watch(statusProvider);
+    Map<DateTime, int> apiCalls = ref.read(statusProvider).apiCalls;
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(5),
@@ -60,6 +62,7 @@ class StatusPage extends ConsumerWidget {
                                     .read(statusProvider.notifier)
                                     .changeStatus(value);
                                 ref.read(statusProvider.notifier).getLogs();
+                                ref.read(statusProvider.notifier).getAPICalls();
                               })),
                         ),
                         const Spacer(flex: 3),
@@ -140,15 +143,10 @@ class StatusPage extends ConsumerWidget {
                                 .toString()),
                         Expanded(
                           child: LineChart(LineChartData(
-                            minX: 0,
-                            minY: 0,
                             lineBarsData: [
-                              LineChartBarData(spots: const [
-                                FlSpot(1, 1),
-                                FlSpot(2, 2),
-                                FlSpot(3, 2),
-                                FlSpot(4, 5),
-                              ], color: darkOrange)
+                              LineChartBarData(
+                                  spots: createGraphPoint(apiCalls),
+                                  color: darkOrange)
                             ],
                             backgroundColor: lightGrey,
                           )),
@@ -164,5 +162,14 @@ class StatusPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  List<FlSpot> createGraphPoint(Map<DateTime, int> map) {
+    List<FlSpot> charPoint = [];
+    map.forEach((key, value) {
+      double x = key.hour + (key.minute / 100);
+      charPoint.add(FlSpot(x, value.toDouble()));
+    });
+    return charPoint;
   }
 }
