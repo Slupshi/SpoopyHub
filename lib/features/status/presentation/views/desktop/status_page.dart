@@ -29,7 +29,7 @@ class StatusPage extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Spacer(flex: 2),
+                        const Spacer(flex: 3),
                         Material(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
@@ -62,7 +62,7 @@ class StatusPage extends ConsumerWidget {
                                 ref.read(statusProvider.notifier).getLogs();
                               })),
                         ),
-                        const Spacer(flex: 2),
+                        const Spacer(flex: 3),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -79,7 +79,7 @@ class StatusPage extends ConsumerWidget {
                                     statusState.runTime))
                           ],
                         ),
-                        const Spacer(flex: 3),
+                        const Spacer(flex: 4),
                       ],
                     ),
                   ),
