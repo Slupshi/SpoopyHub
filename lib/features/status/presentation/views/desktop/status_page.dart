@@ -15,7 +15,7 @@ class StatusPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     StatusState statusState = ref.watch(statusProvider);
-    Map<DateTime, int> apiCalls = ref.read(statusProvider).apiCalls;
+    Map<DateTime, int> apiCalls = statusState.apiCalls;
 
     return Expanded(
       child: Padding(
@@ -143,18 +143,40 @@ class StatusPage extends ConsumerWidget {
                                 .toString()),
                         Expanded(
                           child: LineChart(LineChartData(
+                            baselineX: 0.01,
                             lineBarsData: [
                               LineChartBarData(
                                   spots: createGraphPoint(apiCalls),
                                   color: darkOrange)
                             ],
+                            titlesData: FlTitlesData(
+                              bottomTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                showTitles: true,
+                                interval: 0.01,
+                                reservedSize: 25,
+                                getTitlesWidget: (value, meta) =>
+                                    Text(value.toStringAsFixed(2)),
+                              )),
+                              leftTitles: AxisTitles(),
+                              topTitles: AxisTitles(),
+                            ),
                             backgroundColor: lightGrey,
                           )),
                         ),
                       ],
                     ),
                   )),
-                  const HomeCard(child: Text("toto")),
+                  HomeCard(
+                      child: Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () =>
+                            ref.read(statusProvider.notifier).addAPICall(),
+                        child: const Text("Test Graph +"),
+                      )
+                    ],
+                  )),
                 ],
               ),
             )

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/features/logs/models/spoopy_logs.dart';
 
@@ -65,5 +64,12 @@ class StatusNotifier extends StateNotifier<StatusState> {
       (DateTime.now().add(const Duration(minutes: 2))): 4,
       (DateTime.now().add(const Duration(minutes: 3))): 5,
     });
+  }
+
+  void addAPICall() {
+    Map<DateTime, int> apiCalls2 = {};
+    apiCalls2.addAll(state.apiCalls);
+    apiCalls2.addAll({DateTime.now().add(const Duration(minutes: 4)): 6});
+    state = state.copyWith(apiCalls: apiCalls2);
   }
 }
