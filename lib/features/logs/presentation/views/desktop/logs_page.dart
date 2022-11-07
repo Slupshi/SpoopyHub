@@ -16,9 +16,21 @@ class LogsPage extends ConsumerWidget {
         // TODO: remove Column and Elevated Button
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ElevatedButton(
-              onPressed: () => ref.read(logsProvider.notifier).getLogs(),
-              child: const Text("Test")),
+          Row(
+            children: [
+              const SizedBox(height: 1, width: 20),
+              const Text(
+                "Logs",
+                style: TextStyle(
+                    color: black, fontWeight: FontWeight.bold, fontSize: 24),
+              ),
+              const SizedBox(height: 1, width: 20),
+              ElevatedButton(
+                  onPressed: () => ref.read(logsProvider.notifier).getLogs(),
+                  child: const Text("Test"))
+            ],
+          ),
+          const SizedBox(width: double.infinity, height: 15),
           Expanded(
             child: Container(
                 decoration: BoxDecoration(
@@ -27,8 +39,8 @@ class LogsPage extends ConsumerWidget {
                   padding: const EdgeInsets.all(10),
                   child: Expanded(
                     child: ListView.separated(
-                      separatorBuilder: (context, index) => const Divider(
-                        color: white,
+                      separatorBuilder: (context, index) => Divider(
+                        color: logsState.logs[index].isError ? red : white,
                       ),
                       itemCount: logsState.logs.length,
                       itemBuilder: ((context, index) => ListTile(
