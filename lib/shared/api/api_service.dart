@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 
-class Api {
+final ApiService apiService = ApiService();
+
+class ApiService {
   late Dio _apiService;
-  Api() {
+  ApiService() {
     _apiService = Dio();
   }
 
@@ -12,5 +14,13 @@ class Api {
 
   Future<void> httpPost(String url, Object model) async {
     await _apiService.post(url, data: model);
+  }
+
+  Future<void> httpPut(String url, Object model) async {
+    await _apiService.put(url);
+  }
+
+  Future<void> httpDelete(String url) async {
+    await _apiService.delete(url);
   }
 }
