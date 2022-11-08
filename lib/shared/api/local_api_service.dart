@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:spoopy/features/logs/models/spoopy_logs.dart';
 import 'package:spoopy/shared/api/api_service.dart';
 
@@ -10,6 +12,16 @@ class LocalApiService {
       {required this.apiService, this.baseURL = "https://localhost:7057/api/"});
 
   Future<SpoopyLogs> getLogs() async {
-    return await apiService.httpGet("") as SpoopyLogs;
+    final result = await apiService.httpGet("");
+    final Map<String, dynamic> data = jsonDecode(result.toString());
+    return SpoopyLogs.fromJson(data);
+  }
+
+  Future<Iterable<SpoopyLogs>> getAllLogs() async {
+    final result = await apiService.httpGet("");
+    final List data = jsonDecode(result.toString());
+    final List<SpoopyLogs> dataList =
+        data.map((item) => SpoopyLogs.fromJson(item)).toList();
+    return dataList;
   }
 }

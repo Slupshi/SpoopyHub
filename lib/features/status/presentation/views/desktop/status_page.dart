@@ -174,7 +174,7 @@ class StatusPage extends ConsumerWidget {
                         onPressed: () =>
                             ref.read(statusProvider.notifier).addAPICall(),
                         child: const Text("Test Graph +"),
-                      )
+                      ),
                     ],
                   )),
                 ],
