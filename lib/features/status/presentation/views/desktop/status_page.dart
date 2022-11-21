@@ -147,7 +147,7 @@ class StatusPage extends ConsumerWidget {
                             lineBarsData: [
                               LineChartBarData(
                                   spots: createGraphPoint(apiCalls),
-                                  color: darkOrange)
+                                  color: darkOrange),
                             ],
                             titlesData: FlTitlesData(
                               bottomTitles: AxisTitles(
