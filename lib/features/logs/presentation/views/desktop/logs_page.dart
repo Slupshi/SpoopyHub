@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:spoopy/assets/colors.dart';
 import 'package:spoopy/features/logs/presentation/viewmodels/logs_viewmodel.dart';
+import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
 
 class LogsPage extends ConsumerWidget {
   const LogsPage({super.key});
@@ -10,6 +11,8 @@ class LogsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final logsState = ref.watch(logsProvider);
+    final ThemeManager themeManager =
+        ref.read(appThemeStateNotifierProvider.notifier);
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -19,10 +22,9 @@ class LogsPage extends ConsumerWidget {
           Row(
             children: [
               const SizedBox(height: 1, width: 20),
-              const Text(
+              Text(
                 "Logs",
-                style: TextStyle(
-                    color: black, fontWeight: FontWeight.bold, fontSize: 24),
+                style: themeManager.getH1TextStyle(context),
               ),
               const SizedBox(height: 1, width: 20),
               ElevatedButton(

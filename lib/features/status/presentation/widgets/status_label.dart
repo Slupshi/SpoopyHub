@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:spoopy/assets/colors.dart';
+import 'package:flutter/material.dart';
 
 class StatusLabel extends StatelessWidget {
   final String label;
@@ -8,14 +7,19 @@ class StatusLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return RichText(
         text: TextSpan(children: [
       TextSpan(
           text: label,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: black)),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: theme.textTheme.bodyText2?.color)),
       TextSpan(
           text: content,
-          style: const TextStyle(fontStyle: FontStyle.italic, color: black)),
+          style: TextStyle(
+              fontStyle: FontStyle.italic,
+              color: theme.textTheme.bodyText2?.color)),
     ]));
   }
 }

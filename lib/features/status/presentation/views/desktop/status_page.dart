@@ -7,6 +7,7 @@ import 'package:spoopy/assets/colors.dart';
 import 'package:spoopy/features/status/presentation/viewmodels/status_viewmodel.dart';
 import 'package:spoopy/features/status/presentation/widgets/home_card.dart';
 import 'package:spoopy/features/status/presentation/widgets/status_label.dart';
+import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
 import 'package:spoopy/shared/utilities.dart';
 
 class StatusPage extends ConsumerWidget {
@@ -16,6 +17,9 @@ class StatusPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     StatusState statusState = ref.watch(statusProvider);
     Map<DateTime, int> apiCalls = statusState.apiCalls;
+
+    final ThemeManager themeManager =
+        ref.read(appThemeStateNotifierProvider.notifier);
 
     return Expanded(
       child: Padding(
@@ -91,8 +95,8 @@ class StatusPage extends ConsumerWidget {
                         child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: ListView.separated(
-                          separatorBuilder: (context, index) => const Divider(
-                                color: black,
+                          separatorBuilder: (context, index) => Divider(
+                                color: themeManager.getLineColor(context),
                               ),
                           itemCount: statusState.logs.length > 7
                               ? 7
@@ -104,21 +108,25 @@ class StatusPage extends ConsumerWidget {
                                     Text(DateFormat.yMd()
                                         .add_jm()
                                         .format(statusState.logs[index].time)),
-                                    const VerticalDivider(
-                                      color: black,
+                                    VerticalDivider(
+                                      color: themeManager.getLineColor(context),
                                       thickness: 1,
                                     ),
                                   ],
                                 ),
-                                title: Text(statusState.logs[index].message),
+                                title: Text(
+                                  statusState.logs[index].message,
+                                  style: themeManager.getBodyTextStyle(context),
+                                ),
                                 trailing: Text(
                                   statusState.logs[index].isError
                                       ? 'ERROR'
                                       : 'INFO',
                                   style: TextStyle(
-                                      color: statusState.logs[index].isError
-                                          ? red
-                                          : black),
+                                    color: statusState.logs[index].isError
+                                        ? red
+                                        : themeManager.getTextColor(context),
+                                  ),
                                 ),
                               ))),
                     )),
