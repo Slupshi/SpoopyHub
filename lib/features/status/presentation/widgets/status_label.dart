@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
 
-class StatusLabel extends StatelessWidget {
+class StatusLabel extends ConsumerWidget {
   final String label;
   final String content;
   const StatusLabel({super.key, required this.label, required this.content});
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ThemeManager themeManager =
+        ref.read(appThemeStateNotifierProvider.notifier);
     return RichText(
         text: TextSpan(children: [
       TextSpan(
           text: label,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: theme.textTheme.bodyText2?.color)),
+          style: themeManager
+              .getBodyTextStyle(context)!
+              .copyWith(fontWeight: FontWeight.bold)),
       TextSpan(
           text: content,
-          style: TextStyle(
-              fontStyle: FontStyle.italic,
-              color: theme.textTheme.bodyText2?.color)),
+          style: themeManager
+              .getBodyTextStyle(context)!
+              .copyWith(fontStyle: FontStyle.italic)),
     ]));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/assets/colors.dart';
+import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
 
 import 'package:spoopy/shared/navigation/models/nav_item.dart';
 
@@ -17,16 +18,17 @@ class SpoopyNavBarDesktop extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stateIndex = ref.watch(navBarProvider);
-    final theme = Theme.of(context);
+    final ThemeManager themeManager =
+        ref.read(appThemeStateNotifierProvider.notifier);
     return Container(
-      color: theme.colorScheme.primary,
+      color: themeManager.getPrimaryColor(context),
       width: 200,
       height: double.infinity,
       child: ListView.builder(
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) => Container(
           color: stateIndex == index
-              ? theme.colorScheme.primaryContainer
+              ? themeManager.getPrimaryAccentColor(context)
               : transparent,
           child: ListTile(
             leading: Icon(

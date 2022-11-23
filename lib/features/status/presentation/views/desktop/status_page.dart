@@ -155,7 +155,7 @@ class StatusPage extends ConsumerWidget {
                             lineBarsData: [
                               LineChartBarData(
                                   spots: createGraphPoint(apiCalls),
-                                  color: darkOrange),
+                                  color: themeManager.getPrimaryColor(context)),
                             ],
                             titlesData: FlTitlesData(
                               bottomTitles: AxisTitles(
@@ -169,7 +169,8 @@ class StatusPage extends ConsumerWidget {
                               leftTitles: AxisTitles(),
                               topTitles: AxisTitles(),
                             ),
-                            backgroundColor: lightGrey,
+                            backgroundColor:
+                                themeManager.getBackgroundColor(context),
                           )),
                         ),
                       ],

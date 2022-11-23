@@ -81,9 +81,27 @@ class ThemeManager extends StateNotifier<ThemeState> {
   TextStyle? getBodyTextStyle(BuildContext context) =>
       Theme.of(context).textTheme.bodyText2;
 
+  Color getBackgroundColor(BuildContext context) =>
+      Theme.of(context).scaffoldBackgroundColor;
+
   Color getLineColor(BuildContext context) =>
       Theme.of(context).colorScheme.outline;
 
   Color getTextColor(BuildContext context) =>
       Theme.of(context).textTheme.bodyText2!.color!;
+
+  Color getPrimaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.primary;
+  Color getPrimaryAccentColor(BuildContext context) =>
+      Theme.of(context).colorScheme.primaryContainer;
+
+  Color getSecondaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.secondary;
+  Color getSecondaryAccentColor(BuildContext context) =>
+      Theme.of(context).colorScheme.secondaryContainer;
+
+  Color getTertiaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.tertiary;
+  Color getTertiaryAccentColor(BuildContext context) =>
+      Theme.of(context).colorScheme.tertiaryContainer;
 }
