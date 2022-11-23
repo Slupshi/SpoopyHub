@@ -16,31 +16,36 @@ class ThemeState {
 
   List<ThemeItem> themes = [
     ThemeItem(
-        name: "Spoopy",
-        isDark: false,
-        primaryColor: darkOrange,
-        themeType: Themes.lightSpoopy),
+      name: "Spoopy",
+      isDark: false,
+      primaryColor: darkOrange,
+      themeType: Themes.lightSpoopy,
+    ),
     ThemeItem(
-        name: "Spoopy",
-        isDark: true,
-        primaryColor: darkOrange,
-        themeType: Themes.darkSpoopy),
+      name: "Spoopy",
+      isDark: true,
+      primaryColor: darkOrange,
+      themeType: Themes.darkSpoopy,
+    ),
     ThemeItem(
-        name: "MLM",
-        isDark: false,
-        primaryColor: darkGreenMLM,
-        themeType: Themes.lightMLM),
+      name: "MLM",
+      isDark: false,
+      primaryColor: darkGreenMLM,
+      themeType: Themes.lightMLM,
+    ),
     ThemeItem(
-        name: "MLM",
-        isDark: true,
-        primaryColor: darkGreenMLM,
-        themeType: Themes.darkMLM),
+      name: "MLM",
+      isDark: true,
+      primaryColor: darkGreenMLM,
+      themeType: Themes.darkMLM,
+    ),
     ThemeItem(
-        name: "MulticolorTest",
-        isDark: false,
-        primaryColor: Colors.green,
-        secondColor: Colors.amber,
-        themeType: Themes.multiColor),
+      name: "MulticolorTest",
+      isDark: false,
+      primaryColor: Colors.green,
+      secondColor: Colors.amber,
+      themeType: Themes.multiColor,
+    ),
   ];
 
   ThemeState copyWith({ThemeData? currentTheme}) =>
@@ -80,6 +85,9 @@ class ThemeManager extends StateNotifier<ThemeState> {
 
   TextStyle? getBodyTextStyle(BuildContext context) =>
       Theme.of(context).textTheme.bodyText2;
+
+  Color getErrorColor(BuildContext context) =>
+      Theme.of(context).colorScheme.error;
 
   Color getBackgroundColor(BuildContext context) =>
       Theme.of(context).scaffoldBackgroundColor;

@@ -14,15 +14,17 @@ class StatusLabel extends ConsumerWidget {
     return RichText(
         text: TextSpan(children: [
       TextSpan(
-          text: label,
-          style: themeManager
-              .getBodyTextStyle(context)!
-              .copyWith(fontWeight: FontWeight.bold)),
+        text: label,
+        style: themeManager
+            .getBodyTextStyle(context)!
+            .copyWith(fontWeight: FontWeight.bold),
+      ),
       TextSpan(
-          text: content,
-          style: themeManager
-              .getBodyTextStyle(context)!
-              .copyWith(fontStyle: FontStyle.italic)),
+        text: content,
+        style: themeManager
+            .getBodyTextStyle(context)!
+            .copyWith(fontStyle: FontStyle.italic),
+      ),
     ]));
   }
 }

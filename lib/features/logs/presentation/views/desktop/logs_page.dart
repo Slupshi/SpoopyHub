@@ -69,7 +69,7 @@ class LogsPage extends ConsumerWidget {
                               logsState.logs[index].isError ? 'ERROR' : 'INFO',
                               style: TextStyle(
                                   color: logsState.logs[index].isError
-                                      ? red
+                                      ? themeManager.getErrorColor(context)
                                       : white,
                                   fontWeight: logsState.logs[index].isError
                                       ? FontWeight.bold

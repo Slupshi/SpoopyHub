@@ -20,6 +20,7 @@ class AppThemes {
     required Color? cardColor,
     required Color? primaryColor,
     required Color? primaryColorAccent,
+    required Color? errorColor,
     Color? secondaryColor,
     Color? secondaryColorAccent,
     Color? tertiaryColor,
@@ -30,6 +31,7 @@ class AppThemes {
           outline: lineColor ?? black,
           primary: primaryColor ?? Colors.blue,
           primaryContainer: primaryColorAccent ?? Colors.blueAccent,
+          error: errorColor ?? red,
           secondary: secondaryColor ?? Colors.red,
           secondaryContainer: secondaryColorAccent ?? Colors.redAccent,
           tertiary: tertiaryColor ?? Colors.yellow,
@@ -51,6 +53,7 @@ class AppThemes {
     cardColor: white,
     primaryColor: darkOrange,
     primaryColorAccent: darkOrangeAccent,
+    errorColor: red,
   );
 
   static final ThemeData darkSpoopyTheme = _themeFactory(
@@ -60,31 +63,38 @@ class AppThemes {
     cardColor: black,
     primaryColor: darkOrange,
     primaryColorAccent: darkOrangeAccent,
+    errorColor: red,
   );
 
   // ===== MLM Test ===== //
 
   static final ThemeData lightMLMTheme = _themeFactory(
-      backgroundColor: whiteBackground,
-      lineColor: black,
-      textColor: black,
-      cardColor: whiteBackground,
-      primaryColor: darkGreenMLM,
-      primaryColorAccent: lightGreenMLM);
+    backgroundColor: whiteBackground,
+    lineColor: black,
+    textColor: black,
+    cardColor: whiteBackground,
+    primaryColor: darkGreenMLM,
+    primaryColorAccent: lightGreenMLM,
+    errorColor: red,
+  );
 
   static final ThemeData darkMLMTheme = _themeFactory(
-      backgroundColor: blackBackground,
-      lineColor: white,
-      textColor: white,
-      cardColor: black,
-      primaryColor: darkGreenMLM,
-      primaryColorAccent: blackGreenMLM);
+    backgroundColor: blackBackground,
+    lineColor: white,
+    textColor: white,
+    cardColor: black,
+    primaryColor: darkGreenMLM,
+    primaryColorAccent: blackGreenMLM,
+    errorColor: red,
+  );
 
   static final ThemeData multiColorTheme = _themeFactory(
-      backgroundColor: Colors.amber,
-      lineColor: Colors.pink,
-      textColor: Colors.red,
-      cardColor: whiteBackground,
-      primaryColor: Colors.green,
-      primaryColorAccent: Colors.blue);
+    backgroundColor: Colors.amber,
+    lineColor: Colors.pink,
+    textColor: Colors.red,
+    cardColor: whiteBackground,
+    primaryColor: Colors.green,
+    primaryColorAccent: Colors.blue,
+    errorColor: Colors.deepPurple,
+  );
 }

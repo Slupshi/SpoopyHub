@@ -124,7 +124,7 @@ class StatusPage extends ConsumerWidget {
                                       : 'INFO',
                                   style: TextStyle(
                                     color: statusState.logs[index].isError
-                                        ? red
+                                        ? themeManager.getErrorColor(context)
                                         : themeManager.getTextColor(context),
                                   ),
                                 ),
