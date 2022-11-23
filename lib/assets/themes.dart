@@ -11,6 +11,8 @@ class AppThemes {
   /// - [primaryColorAccent] = Variant de la couleur principale
   /// + [secondaryColor] = Couleur secondaire du thème
   /// + [secondaryColorAccent] = Variant de la couleur secondaire
+  /// + [tertiaryColor] = Couleur secondaire du thème
+  /// + [tertiaryColorAccent] = Variant de la couleur secondaire
   static ThemeData _themeFactory({
     required Color? backgroundColor,
     required Color? lineColor,
@@ -20,6 +22,8 @@ class AppThemes {
     required Color? primaryColorAccent,
     Color? secondaryColor,
     Color? secondaryColorAccent,
+    Color? tertiaryColor,
+    Color? tertiaryColorAccent,
   }) =>
       ThemeData(
         colorScheme: ColorScheme.light(
@@ -28,7 +32,8 @@ class AppThemes {
           primaryContainer: primaryColorAccent ?? Colors.blueAccent,
           secondary: secondaryColor ?? Colors.red,
           secondaryContainer: secondaryColorAccent ?? Colors.redAccent,
-          // tertiary: Colors.orange,
+          tertiary: tertiaryColor ?? Colors.yellow,
+          tertiaryContainer: tertiaryColorAccent ?? Colors.yellowAccent,
         ),
         cardColor: cardColor ?? white,
         scaffoldBackgroundColor: backgroundColor ?? whiteBackground,
@@ -74,4 +79,12 @@ class AppThemes {
       cardColor: black,
       primaryColor: darkGreenMLM,
       primaryColorAccent: blackGreenMLM);
+
+  static final ThemeData multiColorTheme = _themeFactory(
+      backgroundColor: Colors.amber,
+      lineColor: Colors.pink,
+      textColor: Colors.red,
+      cardColor: whiteBackground,
+      primaryColor: Colors.green,
+      primaryColorAccent: Colors.blue);
 }

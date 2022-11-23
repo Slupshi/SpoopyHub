@@ -28,6 +28,7 @@ class ThemesSelectorPage extends ConsumerWidget {
                           .changeTheme(themeManager.themes[index].themeType),
                       isDark: themeManager.themes[index].isDark,
                       dominantColor: themeManager.themes[index].primaryColor,
+                      secondColor: themeManager.themes[index].secondColor,
                       themeName: themeManager.themes[index].name)),
             ),
           ),

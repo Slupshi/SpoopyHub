@@ -8,7 +8,7 @@ import '../../model/theme.dart';
 final appThemeStateNotifierProvider =
     StateNotifierProvider<ThemeManager, ThemeState>((ref) => ThemeManager());
 
-enum Themes { lightMLM, darkMLM, lightSpoopy, darkSpoopy }
+enum Themes { lightMLM, darkMLM, lightSpoopy, darkSpoopy, multiColor }
 
 class ThemeState {
   ThemeData currentTheme;
@@ -35,6 +35,12 @@ class ThemeState {
         isDark: true,
         primaryColor: darkGreenMLM,
         themeType: Themes.darkMLM),
+    ThemeItem(
+        name: "MulticolorTest",
+        isDark: false,
+        primaryColor: Colors.green,
+        secondColor: Colors.amber,
+        themeType: Themes.multiColor),
   ];
 
   ThemeState copyWith({ThemeData? currentTheme}) =>
@@ -57,6 +63,9 @@ class ThemeManager extends StateNotifier<ThemeState> {
         break;
       case Themes.darkMLM:
         state = state.copyWith(currentTheme: AppThemes.darkMLMTheme);
+        break;
+      case Themes.multiColor:
+        state = state.copyWith(currentTheme: AppThemes.multiColorTheme);
         break;
       default:
         state = state.copyWith(currentTheme: AppThemes.lightSpoopyTheme);
