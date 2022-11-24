@@ -35,30 +35,6 @@ class ThemesSelectorPage extends ConsumerWidget {
           const Spacer(flex: 1),
         ],
       ),
-      //     Column(
-      //   children: [
-      //     ThemeCard(
-      //         onClick: () => themeManager.changeTheme(Themes.lightSpoopy),
-      //         isDark: false,
-      //         dominantColor: darkOrange,
-      //         themeName: "Spoopy"),
-      //     ThemeCard(
-      //         onClick: () => themeManager.changeTheme(Themes.darkSpoopy),
-      //         isDark: true,
-      //         dominantColor: darkOrange,
-      //         themeName: "Spoopy"),
-      //     ThemeCard(
-      //         onClick: () => themeManager.changeTheme(Themes.lightMLM),
-      //         isDark: false,
-      //         dominantColor: lightGreenMLM,
-      //         themeName: "MLM"),
-      //     ThemeCard(
-      //         onClick: () => themeManager.changeTheme(Themes.darkMLM),
-      //         isDark: true,
-      //         dominantColor: darkGreenMLM,
-      //         themeName: "MLM"),
-      //   ],
-      // )
     );
   }
 }

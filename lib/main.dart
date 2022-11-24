@@ -5,6 +5,7 @@ import 'package:spoopy/app_mobile.dart';
 import 'dart:io' show Platform;
 
 import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
+import 'package:spoopy/features/themes/presentations/views/mobile/themes_pages_mobile.dart';
 
 void main() {
   runApp(const ProviderScope(child: App()));
@@ -19,11 +20,25 @@ class App extends StatelessWidget {
       builder: (context, ref, child) => MaterialApp(
         title: 'Spoopy',
         theme: ref.watch(appThemeStateNotifierProvider).currentTheme,
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text("Spoopy's Management App"),
-            ),
-            body: Platform.isWindows ? const DesktopApp() : const MobileApp()),
+        home: Builder(
+          builder: (context) => Scaffold(
+              appBar: AppBar(
+                title: const Text("Spoopy's Management App"),
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ThemesPagesMobile()));
+                      },
+                      icon: const Icon(Icons.format_paint))
+                ],
+              ),
+              body:
+                  Platform.isWindows ? const DesktopApp() : const MobileApp()),
+        ),
         debugShowCheckedModeBanner: false,
       ),
     );

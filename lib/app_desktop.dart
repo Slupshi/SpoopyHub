@@ -4,7 +4,7 @@ import 'package:spoopy/features/logs/presentation/views/desktop/logs_page.dart';
 import 'package:spoopy/features/status/presentation/views/desktop/status_page.dart';
 import 'package:spoopy/shared/navigation/viewmodels/nav_viewmodel.dart';
 import 'package:spoopy/shared/navigation/views/navbar_desktop.dart';
-import 'package:spoopy/features/themes/presentations/views/themes_page.dart';
+import 'package:spoopy/features/themes/presentations/views/desktop/themes_page.dart';
 
 class DesktopApp extends ConsumerWidget {
   const DesktopApp({super.key});

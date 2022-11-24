@@ -9,6 +9,7 @@ class AppThemes {
   /// - [cardColor] = Couleur par défaut des Card
   /// - [primaryColor] = Couleur principale du thème
   /// - [primaryColorAccent] = Variant de la couleur principale
+  /// - [errorColor] = Couleur des textes d'erreur
   /// + [secondaryColor] = Couleur secondaire du thème
   /// + [secondaryColorAccent] = Variant de la couleur secondaire
   /// + [tertiaryColor] = Couleur secondaire du thème

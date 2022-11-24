@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/features/logs/presentation/views/mobile/logs_page_mobile.dart';
 import 'package:spoopy/features/status/presentation/views/mobile/status_page_mobile.dart';
+import 'package:spoopy/features/themes/presentations/views/mobile/themes_pages_mobile.dart';
 import 'package:spoopy/shared/navigation/viewmodels/nav_viewmodel.dart';
 
 class MobileApp extends ConsumerWidget {
@@ -16,6 +17,8 @@ class MobileApp extends ConsumerWidget {
           const StatusPageMobile()
         else if (index == 1)
           const Flexible(child: LogsPageMobile())
+        else if (index == 2)
+          const ThemesPagesMobile()
         else
           const StatusPageMobile()
       ],
