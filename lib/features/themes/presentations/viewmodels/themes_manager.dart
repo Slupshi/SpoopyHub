@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/assets/themes.dart';
+import 'package:spoopy/features/themes/model/themedata_extension.dart';
 
 import '../../../../assets/colors.dart';
 import '../../model/theme.dart';
@@ -76,40 +77,4 @@ class ThemeManager extends StateNotifier<ThemeState> {
         state = state.copyWith(currentTheme: AppThemes.lightSpoopyTheme);
     }
   }
-
-  TextStyle? getH1TextStyle(BuildContext context) =>
-      Theme.of(context).textTheme.headline1;
-
-  TextStyle? getH2TextStyle(BuildContext context) =>
-      Theme.of(context).textTheme.headline2;
-
-  TextStyle? getBodyTextStyle(BuildContext context) =>
-      Theme.of(context).textTheme.bodyText2;
-
-  Color getErrorColor(BuildContext context) =>
-      Theme.of(context).colorScheme.error;
-
-  Color getBackgroundColor(BuildContext context) =>
-      Theme.of(context).scaffoldBackgroundColor;
-
-  Color getLineColor(BuildContext context) =>
-      Theme.of(context).colorScheme.outline;
-
-  Color getTextColor(BuildContext context) =>
-      Theme.of(context).textTheme.bodyText2!.color!;
-
-  Color getPrimaryColor(BuildContext context) =>
-      Theme.of(context).colorScheme.primary;
-  Color getPrimaryAccentColor(BuildContext context) =>
-      Theme.of(context).colorScheme.primaryContainer;
-
-  Color getSecondaryColor(BuildContext context) =>
-      Theme.of(context).colorScheme.secondary;
-  Color getSecondaryAccentColor(BuildContext context) =>
-      Theme.of(context).colorScheme.secondaryContainer;
-
-  Color getTertiaryColor(BuildContext context) =>
-      Theme.of(context).colorScheme.tertiary;
-  Color getTertiaryAccentColor(BuildContext context) =>
-      Theme.of(context).colorScheme.tertiaryContainer;
 }

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:spoopy/assets/colors.dart';
 import 'package:spoopy/features/logs/presentation/viewmodels/logs_viewmodel.dart';
-import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
+import 'package:spoopy/features/themes/model/themedata_extension.dart';
 
 class LogsPage extends ConsumerWidget {
   const LogsPage({super.key});
@@ -11,8 +11,7 @@ class LogsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final logsState = ref.watch(logsProvider);
-    final ThemeManager themeManager =
-        ref.read(appThemeStateNotifierProvider.notifier);
+    final ThemeData theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -24,7 +23,7 @@ class LogsPage extends ConsumerWidget {
               const SizedBox(height: 1, width: 20),
               Text(
                 "Logs",
-                style: themeManager.getH1TextStyle(context),
+                style: theme.h1TextStyle,
               ),
               const SizedBox(height: 1, width: 20),
               ElevatedButton(
@@ -69,7 +68,7 @@ class LogsPage extends ConsumerWidget {
                               logsState.logs[index].isError ? 'ERROR' : 'INFO',
                               style: TextStyle(
                                   color: logsState.logs[index].isError
-                                      ? themeManager.getErrorColor(context)
+                                      ? theme.errorColorBrush
                                       : white,
                                   fontWeight: logsState.logs[index].isError
                                       ? FontWeight.bold

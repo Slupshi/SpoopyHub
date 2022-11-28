@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/assets/colors.dart';
+import 'package:spoopy/features/themes/model/themedata_extension.dart';
 import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
 
 class ThemeCard extends ConsumerWidget {
@@ -20,12 +21,11 @@ class ThemeCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ThemeManager themeManager =
-        ref.read(appThemeStateNotifierProvider.notifier);
+    final ThemeData theme = Theme.of(context);
     return Card(
       clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: themeManager.getLineColor(context), width: 2),
+        side: BorderSide(color: theme.lineColor, width: 2),
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 2,

@@ -7,7 +7,7 @@ import 'package:spoopy/assets/colors.dart';
 import 'package:spoopy/features/status/presentation/viewmodels/status_viewmodel.dart';
 import 'package:spoopy/features/status/presentation/widgets/home_card.dart';
 import 'package:spoopy/features/status/presentation/widgets/status_label.dart';
-import 'package:spoopy/features/themes/presentations/viewmodels/themes_manager.dart';
+import 'package:spoopy/features/themes/model/themedata_extension.dart';
 import 'package:spoopy/shared/utilities.dart';
 
 class StatusPage extends ConsumerWidget {
@@ -18,8 +18,7 @@ class StatusPage extends ConsumerWidget {
     StatusState statusState = ref.watch(statusProvider);
     Map<DateTime, int> apiCalls = statusState.apiCalls;
 
-    final ThemeManager themeManager =
-        ref.read(appThemeStateNotifierProvider.notifier);
+    final ThemeData theme = Theme.of(context);
 
     return Expanded(
       child: Padding(
@@ -96,7 +95,7 @@ class StatusPage extends ConsumerWidget {
                       padding: const EdgeInsets.all(10),
                       child: ListView.separated(
                           separatorBuilder: (context, index) => Divider(
-                                color: themeManager.getLineColor(context),
+                                color: theme.lineColor,
                               ),
                           itemCount: statusState.logs.length > 7
                               ? 7
@@ -109,14 +108,14 @@ class StatusPage extends ConsumerWidget {
                                         .add_jm()
                                         .format(statusState.logs[index].time)),
                                     VerticalDivider(
-                                      color: themeManager.getLineColor(context),
+                                      color: theme.lineColor,
                                       thickness: 1,
                                     ),
                                   ],
                                 ),
                                 title: Text(
                                   statusState.logs[index].message,
-                                  style: themeManager.getBodyTextStyle(context),
+                                  style: theme.bodyTextStyle,
                                 ),
                                 trailing: Text(
                                   statusState.logs[index].isError
@@ -124,8 +123,8 @@ class StatusPage extends ConsumerWidget {
                                       : 'INFO',
                                   style: TextStyle(
                                     color: statusState.logs[index].isError
-                                        ? themeManager.getErrorColor(context)
-                                        : themeManager.getTextColor(context),
+                                        ? theme.errorColorBrush
+                                        : theme.textColor,
                                   ),
                                 ),
                               ))),
@@ -155,7 +154,7 @@ class StatusPage extends ConsumerWidget {
                             lineBarsData: [
                               LineChartBarData(
                                   spots: createGraphPoint(apiCalls),
-                                  color: themeManager.getPrimaryColor(context)),
+                                  color: theme.primaryColorBrush),
                             ],
                             titlesData: FlTitlesData(
                               bottomTitles: AxisTitles(
@@ -169,8 +168,7 @@ class StatusPage extends ConsumerWidget {
                               leftTitles: AxisTitles(),
                               topTitles: AxisTitles(),
                             ),
-                            backgroundColor:
-                                themeManager.getBackgroundColor(context),
+                            backgroundColor: theme.backgroundColorBrush,
                           )),
                         ),
                       ],
