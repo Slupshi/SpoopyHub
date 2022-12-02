@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:spoopy/assets/themes.dart';
+import 'package:spoopy/features/themes/model/themedata_extension.dart';
 
 import '../../../../assets/colors.dart';
 import '../../model/theme.dart';
@@ -23,32 +24,32 @@ class ThemeState {
     ThemeItem(
       name: "Spoopy",
       isDark: false,
-      primaryColor: darkOrange,
+      primaryColor: AppThemes.lightSpoopyTheme.primaryColorBrush,
       themeType: Themes.lightSpoopy,
     ),
     ThemeItem(
       name: "Spoopy",
       isDark: true,
-      primaryColor: darkOrange,
+      primaryColor: AppThemes.darkSpoopyTheme.primaryColorBrush,
       themeType: Themes.darkSpoopy,
     ),
     ThemeItem(
       name: "MLM",
       isDark: false,
-      primaryColor: darkGreenMLM,
+      primaryColor: AppThemes.lightMLMTheme.primaryColorBrush,
       themeType: Themes.lightMLM,
     ),
     ThemeItem(
       name: "MLM",
       isDark: true,
-      primaryColor: darkGreenMLM,
+      primaryColor: AppThemes.darkMLMTheme.primaryColorBrush,
       themeType: Themes.darkMLM,
     ),
     ThemeItem(
       name: "MulticolorTest",
       isDark: false,
-      primaryColor: Colors.green,
-      secondColor: Colors.amber,
+      primaryColor: AppThemes.multiColorTheme.primaryColorBrush,
+      secondColor: AppThemes.multiColorTheme.backgroundColorBrush,
       themeType: Themes.multiColor,
     ),
   ];
