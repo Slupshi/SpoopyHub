@@ -9,7 +9,7 @@ class ThemesPagesMobile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeManager = ref.watch(appThemeStateNotifierProvider);
+    final themeManager = ref.watch(themeManagerProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Spoopy's Management App"),
@@ -25,7 +25,7 @@ class ThemesPagesMobile extends ConsumerWidget {
               themeManager.themes.length,
               (index) => ThemeCard(
                   onClick: () => ref
-                      .read(appThemeStateNotifierProvider.notifier)
+                      .read(themeManagerProvider.notifier)
                       .changeTheme(themeManager.themes[index].themeType),
                   isDark: themeManager.themes[index].isDark,
                   dominantColor: themeManager.themes[index].primaryColor,

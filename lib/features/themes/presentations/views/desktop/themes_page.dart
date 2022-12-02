@@ -8,7 +8,7 @@ class ThemesSelectorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeManager = ref.read(appThemeStateNotifierProvider);
+    final themeManager = ref.read(themeManagerProvider);
     return Expanded(
       child: Row(
         children: [
@@ -24,7 +24,7 @@ class ThemesSelectorPage extends ConsumerWidget {
                   themeManager.themes.length,
                   (index) => ThemeCard(
                       onClick: () => ref
-                          .read(appThemeStateNotifierProvider.notifier)
+                          .read(themeManagerProvider.notifier)
                           .changeTheme(themeManager.themes[index].themeType),
                       isDark: themeManager.themes[index].isDark,
                       dominantColor: themeManager.themes[index].primaryColor,

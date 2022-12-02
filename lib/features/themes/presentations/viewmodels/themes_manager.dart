@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:spoopy/assets/themes.dart';
 
 import '../../../../assets/colors.dart';
 import '../../model/theme.dart';
 
+part 'themes_manager.g.dart';
+
 // final appThemeStateNotifierProvider =
 //     NotifierProvider<ThemeManager, ThemeState>(() => ThemeManager());
 
-final appThemeStateNotifierProvider =
-    NotifierProvider<ThemeManager, ThemeState>(ThemeManager.new);
+// final appThemeStateNotifierProvider =
+//     NotifierProvider<ThemeManager, ThemeState>(ThemeManager.new);
 
 enum Themes { lightMLM, darkMLM, lightSpoopy, darkSpoopy, multiColor }
 
@@ -55,7 +57,8 @@ class ThemeState {
       ThemeState(currentTheme: currentTheme ?? this.currentTheme);
 }
 
-class ThemeManager extends Notifier<ThemeState> {
+@riverpod
+class ThemeManager extends _$ThemeManager {
   @override
   ThemeState build() => ThemeState(currentTheme: AppThemes.lightSpoopyTheme);
 

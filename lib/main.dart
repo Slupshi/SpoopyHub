@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) => MaterialApp(
         title: 'Spoopy',
-        theme: ref.watch(appThemeStateNotifierProvider).currentTheme,
+        theme: ref.watch(themeManagerProvider).currentTheme,
         home: Builder(
           builder: (context) => Scaffold(
               appBar: AppBar(
