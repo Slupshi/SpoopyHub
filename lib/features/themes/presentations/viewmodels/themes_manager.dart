@@ -3,16 +3,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:spoopy/assets/themes.dart';
 import 'package:spoopy/features/themes/model/themedata_extension.dart';
 
-import '../../../../assets/colors.dart';
 import '../../model/theme.dart';
 
 part 'themes_manager.g.dart';
-
-// final appThemeStateNotifierProvider =
-//     NotifierProvider<ThemeManager, ThemeState>(() => ThemeManager());
-
-// final appThemeStateNotifierProvider =
-//     NotifierProvider<ThemeManager, ThemeState>(ThemeManager.new);
 
 enum Themes { lightMLM, darkMLM, lightSpoopy, darkSpoopy, multiColor }
 

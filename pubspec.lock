@@ -418,7 +418,7 @@ packages:
     source: hosted
     version: "2.1.1"
   riverpod_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: riverpod_annotation
       url: "https://pub.dartlang.org"
