@@ -24,17 +24,19 @@ class App extends StatelessWidget {
           builder: (context) => Scaffold(
               appBar: AppBar(
                 title: const Text("Spoopy's Management App"),
-                actions: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const ThemesPagesMobile()));
-                      },
-                      icon: const Icon(Icons.format_paint))
-                ],
+                actions: Platform.isAndroid
+                    ? [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ThemesPagesMobile()));
+                            },
+                            icon: const Icon(Icons.format_paint))
+                      ]
+                    : null,
               ),
               body:
                   Platform.isWindows ? const DesktopApp() : const MobileApp()),

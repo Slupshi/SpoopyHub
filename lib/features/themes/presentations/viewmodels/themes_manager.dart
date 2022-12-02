@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoopy/assets/themes.dart';
-import 'package:spoopy/features/themes/model/themedata_extension.dart';
 
 import '../../../../assets/colors.dart';
 import '../../model/theme.dart';
 
+// final appThemeStateNotifierProvider =
+//     NotifierProvider<ThemeManager, ThemeState>(() => ThemeManager());
+
 final appThemeStateNotifierProvider =
-    StateNotifierProvider<ThemeManager, ThemeState>((ref) => ThemeManager());
+    NotifierProvider<ThemeManager, ThemeState>(ThemeManager.new);
 
 enum Themes { lightMLM, darkMLM, lightSpoopy, darkSpoopy, multiColor }
 
@@ -53,8 +55,9 @@ class ThemeState {
       ThemeState(currentTheme: currentTheme ?? this.currentTheme);
 }
 
-class ThemeManager extends StateNotifier<ThemeState> {
-  ThemeManager() : super(ThemeState(currentTheme: AppThemes.lightSpoopyTheme));
+class ThemeManager extends Notifier<ThemeState> {
+  @override
+  ThemeState build() => ThemeState(currentTheme: AppThemes.lightSpoopyTheme);
 
   void changeTheme(Themes selectedTheme) {
     switch (selectedTheme) {
